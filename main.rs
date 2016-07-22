@@ -149,11 +149,11 @@ fn get_element_by_string(token: &String) -> Element{
         '*' => Operator(Mul),
         '/' => Operator(Div),
         '%' => Operator(Modulus),
+        '^' => Operator(Pow),
         _ => {
-            println!("Token before parse: {}", token);
             match token.parse::<f32>(){
-                Ok(x)  => {println!("{}", x); Value(x)},
-                Err(x) => {println!("{}", x); Value(0.0)}
+                Ok(x)  => Value(x),
+                Err(x) => Value(0.0)
             }
         }
     }
@@ -168,7 +168,7 @@ fn string_to_list(str_expr: &String) -> List<Element>{
             '0'...'9' | '.' => {
                 token.push(ch);
             },
-            '+'|'-'|'*'|'/'|'%' => {
+            '+'|'-'|'*'|'/'|'%'|'^' => {
                 if !token.is_empty(){
                     tmp.push(get_element_by_string( &(token) ));
                     token.clear();
