@@ -1,0 +1,18 @@
+[package]
+name = "CalcGui"
+version = "0.1.0"
+authors = ["WinPooh32 <winpooh32@yandex.ru>"]
+
+[dependencies.gtk]
+version = "0.1.0"
+features = ["v3_12"]
+
+# The release profile, used for `cargo build --release`.
+[profile.release]
+opt-level = 3
+debug = false
+rpath = false
+lto = true
+debug-assertions = false
+codegen-units = 1
+panic = 'unwind'
